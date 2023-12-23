@@ -1,5 +1,7 @@
 #!/bin/bash
 
+MSH_D_URL="https://msh.gekware.net/builds/egg/"
+
 function forceStuffs {
     mkdir -p plugins 
 
@@ -8,25 +10,53 @@ function forceStuffs {
     echo "motd=This server is hosted by leourel hosting, Create your own server in Leourel.com" >> server.properties
 }
 
-function launchJavaServer {
-    java -Xms128M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar server.jar nogui
-}
-
 function optimizeJavaServer {
     echo "view-distance=6" >> server.properties
 }
 
+cd /mnt/server
+
+arch=$(uname -m)
+
+if [[ $arch == x86_64* ]]; then
+    echo "MSH: X64 Architecture"
+    echo -e "Running curl -o msh_server.bin ${MSH_D_URL}msh-linux-amd64.bin"
+    curl -o msh_server.bin ${MSH_D_URL}msh-linux-amd64.bin
+elif [[ $arch == aarch64* ]]; then
+    echo "MSH: aarch64 Architecture"
+    echo -e "Running curl -o msh_server.bin ${MSH_D_URL}msh-linux-arm64.bin"
+    curl -o msh_server.bin ${MSH_D_URL}msh-linux-arm64.bin
+elif [[ $arch == arm* ]]; then
+    echo "MSH: ARM not V8 is not supported..."
+elif [[ $arch == unknown* ]]; then
+    echo "MSH: Architecture detection failed..."
+    exit 1
+fi
+
+chmod u+x ./msh_server.bin
+
+if [ ! -f server.properties ]; then
+    echo -e "Downloading MC server.properties"
+    curl -o server.properties https://raw.githubusercontent.com/parkervcp/eggs/master/minecraft/java/server.properties
+fi
+
+if [ ! -d "plugins" ]; then
+        mkdir plugins
+fi
+
+if [ ! -f "plugins/HibernateX.jar" ]; then
+        curl -O plugins/HubernareX.jar https://raw.githubusercontent.com/ewn69/hicstr-hibernate/main/assets/HibernateX.jar
+fi
+
+if [ ! -f "server-icon.png" ]; then
+        curl -O https://leourel.com/wp-content/uploads/2023/10/image-24.png
+fi
+
+if [ ! -f msh-config.json ]; then
+    echo -e "Downloading MSH msh-config.json"
+    curl -o msh-config.json https://gist.githubusercontent.com/BolverBlitz/fa895e8062fcab7dd7a54d768843a261/raw/7224a0694a985ba1bff0b4fe9b44f2c79e9b495e/msh-config.json
+fi
+
 forceStuffs
 
 optimizeJavaServer
-
-launchJavaServer
-    if [ ! -d "plugins" ]; then
-        mkdir plugins
-    fi
-    if [ ! -f "plugins/HibernateX.jar" ]; then
-        curl -O plugins/HubernareX.jar https://raw.githubusercontent.com/ewn69/hicstr-hibernate/main/assets/HibernateX.jar
-    fi
-    if [ ! -f "server-icon.png" ]; then
-        curl -O https://leourel.com/wp-content/uploads/2023/10/image-24.png
-        fi
