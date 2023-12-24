@@ -3,7 +3,7 @@
 function forceStuffs {
     mkdir -p plugins 
 
-    curl -O https://leourel.com/wp-content/uploads/2023/10/image-24.png
+    curl -O server-icon.png https://leourel.com/wp-content/uploads/2023/10/image-24.png
     
     echo "motd=This server is hosted by leourel hosting, Create your own server in Leourel.com" >> server.properties
 }
