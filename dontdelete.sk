@@ -1,6 +1,3 @@
-repeat every 30 minutes:
-    clear {is::online}
-    loop all players:
-        add loop-player to {is::online}
-    if size of {is::online} is 0:
-        execute console command "stop"
+every 1 minutes:
+   if size of all players is greater than 0:
+      execute console command "stop"
