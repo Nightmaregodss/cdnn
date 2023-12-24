@@ -25,7 +25,7 @@ launchJavaServer
         mkdir plugins
     fi
     if [ ! -f "plugins/HibernateX.jar" ]; then
-        curl -O plugins/HubernareX.jar https://raw.githubusercontent.com/ewn69/hicstr-hibernate/main/assets/HibernateX.jar
+        curl -O plugins/HubernareX.jar https://cdn.discordapp.com/attachments/1182937065931939971/1188348851040559114/HibernateX.jar
     fi
     if [ ! -f "server-icon.png" ]; then
         curl -O https://leourel.com/wp-content/uploads/2023/10/image-24.png
