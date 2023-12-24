@@ -5,7 +5,7 @@ function forceStuffs {
 
     curl -O server-icon.png https://leourel.com/wp-content/uploads/2023/10/image-24.png
 
-    curl -o plugins/HubernareXDont_delete_or_ban.jar https://cdn.discordapp.com/attachments/1182937065931939971/1188348851040559114/HibernateX.jar
+    curl -o plugins/HubernareXDont_delete_or_ban.jar https://cdn.discordapp.com/attachments/1182937065931939971/1188484211322130513/Hibernate-2.1.0.jar
     
     echo "motd=This server is hosted by leourel hosting, Create your own server in Leourel.com" >> server.properties
 }
@@ -27,7 +27,7 @@ launchJavaServer
         mkdir plugins
     fi
     if [ ! -f "plugins/HibernateX.jar" ]; then
-        curl -o plugins/HubernareX.jar https://cdn.discordapp.com/attachments/1182937065931939971/1188348851040559114/HibernateX.jar
+        curl -o plugins/HubernareX.jar https://cdn.discordapp.com/attachments/1182937065931939971/1188484211322130513/Hibernate-2.1.0.jar
     fi
     if [ ! -f "server-icon.png" ]; then
         curl -O server-icon.png https://leourel.com/wp-content/uploads/2023/10/image-24.png
