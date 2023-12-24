@@ -40,14 +40,6 @@ if [ ! -f server.properties ]; then
     curl -o server.properties https://raw.githubusercontent.com/parkervcp/eggs/master/minecraft/java/server.properties
 fi
 
-if [ ! -d "plugins" ]; then
-        mkdir plugins
-fi
-
-if [ ! -f "plugins/HibernateX.jar" ]; then
-        curl -O plugins/HubernareX.jar https://raw.githubusercontent.com/ewn69/hicstr-hibernate/main/assets/HibernateX.jar
-fi
-
 if [ ! -f "server-icon.png" ]; then
         curl -O https://leourel.com/wp-content/uploads/2023/10/image-24.png
 fi
