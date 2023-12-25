@@ -17,7 +17,7 @@ function forceStuffs {
 }
 
 function launchJavaServer {
-    java -server -Xms128M -XX:MaxRAMPercentage=95.0 -jar spigot.jar nogui
+    java -server -Xms128M -XX:MaxRAMPercentage=95.0 -jar {{SERVER_JARFILE}} nogui
 }
 
 function optimizeJavaServer {
